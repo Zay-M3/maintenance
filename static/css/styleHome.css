@@ -1,0 +1,51 @@
+body {
+    background-color: #f8f9fa;
+}
+.sidebar {
+    height: 100vh;
+    background-color: #343a40;
+    padding: 20px;
+    position: fixed;
+}
+.sidebar a {
+    color: white;
+    text-decoration: none;
+}
+.sidebar a:hover {
+    background-color: #495057;
+    padding: 10px;
+    border-radius: 5px;
+}
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+/* Estilo del modal */
+.modal-content {
+    border-radius: 10px;
+    border: none;
+}
+.modal-header {
+    border-bottom: none;
+    text-align: center;
+}
+.modal-title {
+    font-weight: bold;
+    color: #007bff;
+}
+.modal-body {
+    padding: 2rem;
+}
+.form-control {
+    border-radius: 5px;
+}
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+#logout {
+    display: none; /* Inicialmente oculto */
+}
