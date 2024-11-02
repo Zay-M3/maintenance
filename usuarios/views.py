@@ -7,19 +7,18 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 
     
-class dashboard_login(View):
-    template_name = 'home.html'
+class dashboard(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'home.html')
 
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-           
-            return render(request, self.template_name, {'dashboard_content': True})
-        else:
-            
-            form = LoginForm()
-            return render(request, self.template_name, {'form': form, 'dashboard_content': False})
-        
-    def post(self, request, *args,**kwargs):
+class loginUser(View):
+    template_name = 'login.html'
+
+    def get(self, request):
+        form = LoginForm()
+        return render(request, self.template_name, {'form' : form})
+
+    def post(self, request, *args, **kwargs):
         form = LoginForm(request.POST)
 
         if form.is_valid():
@@ -29,8 +28,9 @@ class dashboard_login(View):
         
             if user is not None:
                 login(request, user)
-                return redirect('usuarios:dashboard_login')
+                return redirect('/usuarios/home/')
             else:
-                form.add_error(None, 'Usuario o contraseña incorrectos')
+                form.add_error(None, 'Usuario no encontrado')
 
-        return render(request, self.template_name, {'form': form, 'dashboard_content': False})
+
+        return render(request, self.template_name, {'form': form})

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Aplicación de Mantenimiento</title>
+    <title>Aplicación de Mantenimiento</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/styleHome.css' %}"> <!-- Enlazar el archivo CSS -->
+    <link rel="stylesheet" href="{% static 'css/styleHome.css' %}"> 
 </head>
 <body>
 
@@ -17,21 +17,14 @@
         <li><a href="#">Tareas</a></li>
         <li><a href="#">Informes</a></li>
         <li><a href="#">Configuración</a></li>
-        {% if user.is_authenticated %}
-            <li><a href="{% url 'usuarios:logout' %}" id="logout">Cerrar Sesión</a></li>
-        {% endif %}
+        <li><a href="/usuarios/login/">Cerrar Sesión</a></li>
     </ul>
 </div>
 
 <div class="content">
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1">Bienvenido</span>
-        {% if user.is_authenticated %}
-            <button class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Iniciar Sesión</button>
-        {% endif %}
     </nav>
-    
-    {% if not dashboard_content %}
         <p>Aquí puedes gestionar todas las tareas de mantenimiento.</p>
 
         <div class="row">
@@ -66,44 +59,16 @@
                 </div>
             </div>
         </div>
-    {% endif %}
+    
 </div>
 
 
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form method="POST" action="{% url 'usuarios:dashboard_login' %}">
-                {% csrf_token %}
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="username">Usuario</label>
-                        {{ form.username }}
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Contraseña</label>
-                        {{ form.password }}
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="{% static 'js/scriptHome.js' }"></script> <!-- Enlazar el archivo JS -->
+<script src="{% static 'js/scriptHome.js' %}"></script>
 </body>
 </html>
