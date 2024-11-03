@@ -1,0 +1,19 @@
+.formulario{
+    padding: 5px;
+    margin: auto; 
+}
+
+.crear_cuenta{
+    color: dimgray;
+    text-decoration: none;
+}
+
+.crear_cuenta:hover{
+    color: #007bff;
+    text-decoration: none;
+}
+
+.error{
+    text-align: center;
+}
+
