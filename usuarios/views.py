@@ -1,18 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import LoginForm, RegisterForm
 
-    
-class dashboard(LoginRequiredMixin, View):
-    def get(self, request):
-        return render(request, 'home.html')
-
 class loginUser(View):
     template_name = 'login_register/login.html'
+    
 
     def get(self, request):
         form = LoginForm()
@@ -28,7 +23,7 @@ class loginUser(View):
         
             if user is not None:
                 login(request, user)
-                return redirect('/usuarios/home/')
+                return redirect('inicio')
             else:
                 return render(request, self.template_name, {'form' : form, 'error' : ' ✖️ Credenciales incorrectas'})
 
@@ -36,8 +31,10 @@ class loginUser(View):
         return render(request, self.template_name, {'form': form})
 
 class register(View):
+    templeate_name = 'login_register/register.html'
+
     def get(self, request):
-        return render(request, 'login_register/register.html', {
+        return render(request, self.templeate_name, {
         })
     
     def post(self, request, *args, **kwargs):
@@ -48,16 +45,23 @@ class register(View):
             password1 = formregister.cleaned_data['password1']
             password2 = formregister.cleaned_data['password2']
 
-            if password1 == password2:
+            if password1 != password2:
+                return render(request, self.templeate_name, {
+                'error' : ' ✖️ Contraseñas no coinciden'})
+            else:
                 try:
+                    #Creacion y guardar el usuario nuevo
                     user = User.objects.create_user(username=username, password=password1)
                     user.save()
-                    return render(request, 'login_register/register.html', {
+                    #guarda en cookies 
+                    login(request, user)
+                    return render(request, self.templeate_name, {
                     'usernew' : ' ✔️ Usuario creado con exito'})
                 except:
-                    return render(request, 'login_register/register.html', {
+                    return render(request, self.templeate_name, {
                     'error' : ' ✖️ Fallo al crear usuario'})
-            else:
-                return render(request, 'login_register/register.html', {
-                'error' : ' ✖️ Contraseñas no coinciden'})
 
+class singout(View):
+    def get(self, request):
+        logout(request)
+        return redirect('home')

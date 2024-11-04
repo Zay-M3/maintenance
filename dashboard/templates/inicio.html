@@ -1,38 +1,17 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicación de Mantenimiento</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/styleHome.css' %}"> 
-</head>
-<body>
+{% extends 'home.html' %}
 
-<div class="sidebar">
-    <h2 class="text-white">Menú</h2>
-    <ul class="list-unstyled">
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Tareas</a></li>
-        <li><a href="#">Informes</a></li>
-        <li><a href="#">Configuración</a></li>
-        <li><a href="/usuarios/login/">Cerrar Sesión</a></li>
-    </ul>
-</div>
-
+{% block content %}
 <div class="content">
     <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1">Bienvenido</span>
+        <span class="navbar-brand mb-0 h1"> Bienvenido </span>
     </nav>
-        <p>Aquí puedes gestionar todas las tareas de mantenimiento.</p>
-
+        <p>Aquí puedes gestionar tu proceso de mantenimiento.</p>
         <div class="row">
             <div class="col-md-4">
                 <div class="card text-white bg-primary mb-3">
                     <div class="card-header">Tareas Pendientes</div>
                     <div class="card-body">
-                        <h5 class="card-title">5 Tareas</h5>
+                        <h5 class="card-title"> 0 Tareas</h5>
                         <p class="card-text">Ver detalles de las tareas pendientes.</p>
                         <a href="#" class="btn btn-light">Ver Tareas</a>
                     </div>
@@ -42,7 +21,7 @@
                 <div class="card text-white bg-success mb-3">
                     <div class="card-header">Tareas Completadas</div>
                     <div class="card-body">
-                        <h5 class="card-title">20 Tareas</h5>
+                        <h5 class="card-title">0 Tareas</h5>
                         <p class="card-text">Consulta las tareas que se han completado.</p>
                         <a href="#" class="btn btn-light">Ver Tareas</a>
                     </div>
@@ -59,12 +38,7 @@
                 </div>
             </div>
         </div>
-    
+        
+        
 </div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="{% static 'js/scriptHome.js' %}"></script>
-</body>
-</html>
+{% endblock %}

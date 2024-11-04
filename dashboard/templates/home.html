@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación de Mantenimiento</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styleHome.css' %}"> 
+</head>
+<body>
+
+<div class="sidebar">
+    <h2 class="text-white">Menú</h2>
+    <ul class="list-unstyled">
+        <li><a href="{% url 'inicio' %}">Inicio</a></li>
+        <li><a href="{% url 'tareas' %}">Tareas</a></li>
+        <li><a href="{% url 'informes' %}">Informes</a></li>
+        <li><a href="#">Configuración</a></li>
+        <li><a href="{% url 'usuarios:logaut' %}">Cerrar Sesión</a></li>
+    </ul>
+</div>
+
+{% block content %}
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="{% static 'js/scriptHome.js' %}"></script>
+</body>
+</html>
