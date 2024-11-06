@@ -6,6 +6,8 @@
 *.png 
 *.svg
 
+/.env
+
 ### Django ###
 *.log
 *.pot
