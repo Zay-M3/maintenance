@@ -1,3 +1,7 @@
+env
+db.sqlite3
+__pycache__
+
 # Created by https://www.toptal.com/developers/gitignore/api/django
 # Edit at https://www.toptal.com/developers/gitignore?templates=django
 
@@ -6,8 +10,9 @@
 *.png 
 *.svg
 
-**/.env
-*.ignore
+**/env
+
+
 
 ### Django ###
 *.log
