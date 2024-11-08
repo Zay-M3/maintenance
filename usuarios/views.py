@@ -36,7 +36,7 @@ class register(View):
     def get(self, request):
         return render(request, self.templeate_name, {
         })
-    
+
     def post(self, request, *args, **kwargs):
         formregister =  RegisterForm(request.POST)
 
@@ -65,3 +65,4 @@ class singout(View):
     def get(self, request):
         logout(request)
         return redirect('home')
+    

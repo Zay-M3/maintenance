@@ -1,11 +1,11 @@
 from django.contrib import admin
-from django.urls import path
-from .views import dashboard, task, inicio, informes
+from django.urls import path, include
+from .views import dashboard, inicio, informes, estadisticas
 
 
 urlpatterns = [
     path('home/', dashboard.as_view(), name = 'home'),
-    path('tareas/', task.as_view(), name = 'tareas'),
     path('inicio/', inicio.as_view(), name = 'inicio'),
     path('informes/', informes.as_view(), name = 'informes'),
+    path('estadisticas/', estadisticas.as_view(), name = 'estadisticas'),
 ]

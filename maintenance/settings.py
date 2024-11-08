@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'usuarios',
     'dashboard',
+    'task',
 ]
 
 MIDDLEWARE = [
@@ -137,5 +138,6 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.stogare.StaticFilesStorage"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_URL = 'usuarios:login'
+LOGIN_URL = 'dashboard:home'
 LOGOUT_REDIRECT_URL = 'usuarios:login'  
+LOGIN_REDIRECT_URL = 'dashboard:inicio'
