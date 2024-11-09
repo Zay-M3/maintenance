@@ -23,7 +23,7 @@ class loginUser(View):
         
             if user is not None:
                 login(request, user)
-                return redirect('inicio')
+                return redirect('dashboard:inicio')
             else:
                 return render(request, self.template_name, {'form' : form, 'error' : ' ✖️ Credenciales incorrectas'})
 
@@ -64,5 +64,5 @@ class register(View):
 class singout(View):
     def get(self, request):
         logout(request)
-        return redirect('home')
+        return redirect('usuarios:login')
     

@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'usuarios',
     'dashboard',
     'task',
+    'informes',
+    'estadisticas',
 ]
 
 MIDDLEWARE = [
@@ -140,4 +142,4 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.stogare.StaticFilesStorage"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'dashboard:home'
 LOGOUT_REDIRECT_URL = 'usuarios:login'  
-LOGIN_REDIRECT_URL = 'dashboard:inicio'
+

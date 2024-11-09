@@ -13,10 +13,10 @@
 <div class="sidebar">
     <h2 class="text-white">Menú</h2>
     <ul class="list-unstyled">
-        <li><a href="{% url 'inicio' %}">Inicio</a></li>
+        <li><a href="{% url 'dashboard:inicio' %}">Inicio</a></li>
         <li><a href="{% url 'task:tareas' %}">Tareas</a></li>
-        <li><a href="{% url 'informes' %}">Informes</a></li>
-        <li><a href="{% url 'estadisticas' %}">Estadisticas</a></li>
+        <li><a href="{% url 'informes:informes' %}">Informes</a></li>
+        <li><a href="{% url 'estadisticas:estadisticas' %}">Estadisticas</a></li>
         <li><a href="#">Configuración</a></li>
         <li><a href="{% url 'usuarios:logaut' %}">Cerrar Sesión</a></li>
     </ul>
