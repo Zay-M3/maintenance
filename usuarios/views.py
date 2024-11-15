@@ -7,7 +7,6 @@ from .forms import LoginForm, RegisterForm
 
 class loginUser(View):
     template_name = 'login_register/login.html'
-    
 
     def get(self, request):
         form = LoginForm()

@@ -1,5 +1,5 @@
 body {
-    background-color: #f8f9fa;
+    background-color:white;
 }
 .sidebar {
     height: 100vh;
@@ -17,13 +17,13 @@ body {
     border-radius: 5px;
 }
 .content {
-    margin-left: 250px;
-    padding: 20px;
+    margin-left: 20px;
+    padding: 10px;
 }
-/* Estilo del modal */
+
 .modal-content {
-    border-radius: 10px;
-    border: none;
+    border-radius: 5px;
+    border: black;
 }
 .modal-header {
     border-bottom: none;
@@ -46,7 +46,13 @@ body {
 .btn-primary:hover {
     background-color: #0056b3;
 }
+.navbar-nav .nav-link {
+    transition: all 0.3s ease;
+  }
 
-
+.navbar-nav .nav-link:hover {
+    font-weight: bold;
+    font-size: 1.2em;
+}
 
 

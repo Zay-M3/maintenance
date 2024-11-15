@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'task',
     'informes',
     'estadisticas',
+    'activos',
 ]
 
 MIDDLEWARE = [
