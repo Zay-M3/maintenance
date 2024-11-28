@@ -1,0 +1,73 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block head %}
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+
+{% endblock %}
+{% block content %}
+<div class="container" style="padding: 20px;">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">
+            <i class="fa-solid fa-user"></i>
+            Empleados
+            </h5>
+        </div>
+        <div class="card-body">
+            <table class="table" id="table_employed">
+                <thead>
+                  <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Area</th>
+                    <th scope="col">Cargo</th>
+                    <th scope="col">Opciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for c in categorias %}
+                    <tr>
+                        <td>{{c.code_worker}}</td>
+                        <td>{{c.name}}</td>
+                        <td>{{c.stade}}</td>
+                        <td>{{c.area_worker}}</td>
+                        <td>{{c.carge}}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <form method="POST" action="{% url 'usuarios:change_status' c.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>        
+        </div>
+        <form action="{% url 'usuarios:createemployed' %}">
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Crear Empleado</button>
+            </div>
+        </form>
+        
+            
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block js %}
+<script>
+    new DataTable('#table_employed');
+</script>
+{% endblock %}

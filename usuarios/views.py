@@ -3,7 +3,9 @@ from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, employed_mant
+from .models import worker_plant
+from django.shortcuts import get_object_or_404, redirect
 
 class loginUser(View):
     template_name = 'login_register/login.html'
@@ -65,3 +67,72 @@ class singout(View):
         logout(request)
         return redirect('usuarios:login')
     
+#Empleados
+
+class create_user_mant(LoginRequiredMixin, View):
+    templeate_name = 'empleados/user_mant.html'
+    
+    def get(self, request):
+        return render(request, self.templeate_name) 
+    
+    def post(self, request, *args, **kwargs):
+        formsemployed =  employed_mant(request.POST)
+
+        print(formsemployed.is_valid())
+
+        if formsemployed.is_valid():
+            code = formsemployed.cleaned_data['code']
+            username = formsemployed.cleaned_data['username']
+            last_name  = formsemployed.cleaned_data['last_name']
+            password1 = formsemployed.cleaned_data['password1']
+            password2 = formsemployed.cleaned_data['password2']
+            area = formsemployed.cleaned_data['area']
+            carge = formsemployed.cleaned_data['carge']
+
+            if password1 != password2:
+                return render(request, self.templeate_name, {
+                'error' : ' ✖️ Contraseñas no coinciden'})
+            else:
+                try:
+                    user = User.objects.create_user(username=username, password=password1)
+                    user.save()
+                    employed = worker_plant.objects.create(
+                        code_worker = code,
+                        name = username,
+                        last_name =last_name,
+                        area_worker = area,
+                        carge = carge,
+                        activo_worker = None,
+                        #stade = True
+                        )
+                    employed.save()
+                    return render(request, self.templeate_name, {   
+                    'usernew' : ' ✔️ Usuario creado con exito'})
+                except Exception as e:
+                    print(e)    
+                    return render(request, self.templeate_name, {
+                    'error' : ' ✖️ Fallo'})
+                
+        return render(request, self.templeate_name,{'error' : ' ✖️ Fallo al crear usuario'})
+                
+class editEmployed(View):
+    templete_name = 'empleados/edit_employed.html'
+
+    def get(self, request):
+        return render(request, self.templete_name, {
+            'categorias' : worker_plant.objects.all()
+        })
+    
+class editEmployed2(View):
+    templete_name = 'empleados/edit_employed2.html'
+
+    def get(self, request):
+        return render(request, self.templete_name, {
+            'code' : 'code'
+        } )
+
+def change_status(request, pk):
+    empleado = get_object_or_404(worker_plant, pk=pk)
+    empleado.stade = False 
+    empleado.save()
+    return redirect('usuarios:employed')

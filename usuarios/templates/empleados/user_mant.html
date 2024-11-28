@@ -1,0 +1,72 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh; padding: 40px;">
+    <div class="container" style=" width: 100%; max-width: 2000px;">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center mb-4">Crear Usuario de Mantenimiento</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{% url 'usuarios:createemployed' %}">
+                    {% csrf_token %} 
+                    <div class="error"><label>{{usernew}}</label></div>
+                    <div class="error"><label>{{error}}</label></div>
+                    <div class="form-group" style="display: flex; gap: 10px;padding: 15px;">
+                        <label for="username">Codigo</label>
+                        <input type="text" class="form-control" style="width: 250px;" id="code" name="code" placeholder="Codigo" required>
+                    </div>   
+                    <div class="form-group" style="display: flex; gap: 10px;padding: 15px;">
+                        <label for="username">Nombre</label>
+                        <input type="text" class="form-control" style="width: 250px;" id="username" name="username" placeholder="Nombre" required>
+                        <label for="last_name">Apellido</label>
+                        <input type="text" class="form-control" style="width: 250px;" id="last_name" name="last_name" placeholder="Apellido">
+                    </div>
+                    <div class="form-group" style="padding: 15px;">
+                        <label for="password">Contraseña</label>
+                        <input type="password" class="form-control" style="width: 250px;" id="password1" name="password1" placeholder="Contraseña" required>
+                    </div>
+                    <div class="form-group" style="padding: 15px;">
+                        <label for="password2">Confirmar Contraseña</label>
+                        <input type="password" class="form-control" style="width: 250px;" id="password2" name="password2" placeholder="Confirmar Contraseña" required>
+                    </div>
+                    <div class="form-group" style="display: flex; gap: 10px; padding: 15px;">
+                        <label for="" style="padding: 10px;">Area</label>
+                        <select class="form-select" aria-label="default select text" type="text" id="area" name="area" style="width: 250px;">
+                            <option selected>Planta</option>
+                                <option value="Planta">Planta</option>
+                                <option value="Oficina">Oficina</option>
+                                <option value="Mantenimiento">Area Mantenimiento</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="display: flex; gap: 10px; padding: 15px;">
+                        <label for="" style="padding: 10px;">Cargo</label>
+                        <select class="form-select" aria-label="default select text" type="text" id="carge" name="carge" style="width: 250px;">
+                            <option selected>Empleado</option>
+                            <option value="Planta">Empleado Planta</option>
+                            <option value="Mantenimiento">Empleado Mantenimiento</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-center" >
+                        <button type="submit" class="btn btn-primary" style="width: 200px; padding: 10px;"><i class="fa-solid fa-plus"></i>  Crear Cuenta</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-header">
+                <div style="">
+                    <form action="{% url 'usuarios:employed' %}">
+                        <button type="submit" class="btn btn-secondary btn-block" style="width: 200px;"><i class="fa-solid fa-right-to-bracket"></i>  Atras</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        
+            
+    </form>
+        
+        
+    </div>
+</div>
+
+{% endblock %}

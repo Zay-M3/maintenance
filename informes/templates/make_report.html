@@ -1,0 +1,138 @@
+
+
+<div class="modal fade" id="modal_register_man" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="miModalLabel">Reporte Mantenimiento</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <!-- mantenimiento y infracestuctura -->
+            <div class="row">
+                <div class="container-man_inf" style="margin: 10px;border-radius: 2%; border: 1px solid silver;">
+                    <div class="position-relative" style="padding: 20px;">
+                        <label class="position-absolute top--100 start-50 translate-middle" style="color: gray;">Mantenimiento y infracestuctura</label>
+                    </div>
+                    <div class="row" style="display: flex;"> 
+                        <div style="display: flex;">
+                            <label for="" style="padding: 10px;">Solicitante</label>
+                            <select class="form-select" aria-label="default select text" style="width:350px;">
+                                <option selected>Nombre del trabajador</option>
+                                
+                            </select>
+                            <label for="" style="padding: 10px;">Fecha</label>
+                            <label id="currentDate" style="padding: 10px;"></label>
+
+                        </div>
+                        <div style="display: flex;">
+                            <label for="" style="padding: 10px;">Maquina / Equipo</label>
+                            <select class="form-select" aria-label="default select text" style="width:350px;"></select>
+                            <label for="" style="padding: 10px;">Codigo</label>
+                            <select class="form-select" aria-label="default select text" disabled style="width: 100px;"></select>
+                            <label for="" style="padding: 10px;">Prioridad</label>
+                            <select class="form-select" aria-label="default select text" style="width: 100px;"></select>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+            <!-- Area -->
+            <div class="row">
+                <div class="container-area" style="margin: 10px;border-radius: 2%; border: 1px solid silver;">
+                    <div class="position-relative" style="padding: 20px;">
+                        <label class="position-absolute top--100 start-50 translate-middle" style="color: gray;">Area</label>
+                    </div>
+                    <div style="display: flex; gap: 300px; padding: 5px;"> 
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="area_check" id="rad2">
+                            <label class="form-check-label" for="rad2">
+                                <i class="fa-solid fa-industry"></i>Planta
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="area_check" id="rad2">
+                            <label class="form-check-label" for="rad2">
+                                <i class="fa-solid fa-briefcase"></i>Oficina
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="area_check" id="rad3">
+                            <label class="form-check-label" for="rad3">
+                                <i class="fa-solid fa-building"></i>Edificio
+                            </label>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 100px;">
+                        <div>
+                            <label style="color: gray; padding: 5px;">Tipo de Mantenimiento</label>
+                            <!-- #region <div>
+                                <input class="form-check-input" type="checkbox" value="" id="mant_equipo">
+                                <label class="form-check-label" for="flexCheckDefault">Mantenimiento de Equipo/Maquina</label>
+                                <input class="form-check-input" type="checkbox" value="" id="man_infracestuctura">
+                                <label class="form-check-label" for="flexCheckDefault">Mantenimiento de infracestuctura</label>
+                            </div>-->
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="man_equip_mant" id="rad1">
+                                <label class="form-check-label" for="rad1">
+                                    Mantenimiento de Equipo/Maquina
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="man_equip_mant" id="rad2">
+                                <label class="form-check-label" for="rad2">
+                                    Mantenimiento de infracestuctura
+                                </label>
+                              </div>
+                        </div>
+                        <div>
+                            <label style="color: gray; padding: 5px">Tipo de Solicitud</label>
+                            <!-- #region <div>
+                                <input class="form-check-input" type="checkbox" value="" id="mant_correctivo">
+                                <label class="form-check-label" for="flexCheckDefault">Mantenimiento Correctivo</label>
+                                <input class="form-check-input" type="checkbox" value="" id="mant_mejora">
+                                <label class="form-check-label" for="flexCheckDefault">Mantenimiento de Mejora</label>
+                            </div>-->
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="man_corect_upgrade" id="rad1">
+                                <label class="form-check-label" for="rad1">
+                                    Mantenimiento Correctivo
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="man_corect_upgrade" id="rad2">
+                                <label class="form-check-label" for="rad2">
+                                    Mantenimiento de Mejora
+                                </label>
+                              </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decipcion-->
+
+            <div class="row">
+                <div class="container-description" style="margin: 10px;border-radius: 2%; border: 1px solid silver;">
+                    <div class="position-relative" style="padding: 20px;">
+                        <label class="position-absolute top--100 start-50 translate-middle" style="color: gray;">Descripcion</label>
+                    </div>
+                    <div class="form-floating" style="padding: 10px;">
+                        <textarea class="form-control " name="" id="description_activo" style="width: 100%; height: 170px; padding: auto;"></textarea>
+                        <label for="description_activo">Descripcion del problema</label>
+                     
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer position-relative">
+            <button type="button" class="btn" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary position-absolute top-50 start-50 translate-middle">Guardar Reporte de Mantenimiento</button>
+          </div>
+        </div>
+      </div>
+</div>
+

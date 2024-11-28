@@ -55,4 +55,17 @@ body {
     font-size: 1.2em;
 }
 
+.container-man_inf{
+    height: 150px;
+    width: 100%;
+}
 
+.container-area{
+    height: 200px;
+    width: 100%;
+}
+
+.container-description{
+    height: 250px;
+    width: 100%;
+}
