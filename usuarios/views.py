@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from .forms import LoginForm, RegisterForm, employed_mant
 from .models import worker_plant
 from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.hashers import make_password
 
 class loginUser(View):
     template_name = 'login_register/login.html'
@@ -31,37 +32,7 @@ class loginUser(View):
 
         return render(request, self.template_name, {'form': form})
 
-class register(View):
-    templeate_name = 'login_register/register.html'
-
-    def get(self, request):
-        return render(request, self.templeate_name, {
-        })
-
-    def post(self, request, *args, **kwargs):
-        formregister =  RegisterForm(request.POST)
-
-        if formregister.is_valid():
-            username = formregister.cleaned_data['username']
-            password1 = formregister.cleaned_data['password1']
-            password2 = formregister.cleaned_data['password2']
-
-            if password1 != password2:
-                return render(request, self.templeate_name, {
-                'error' : ' ✖️ Contraseñas no coinciden'})
-            else:
-                try:
-                    #Creacion y guardar el usuario nuevo
-                    user = User.objects.create_user(username=username, password=password1)
-                    user.save()
-                    #guarda en cookies 
-                    login(request, user)
-                    return render(request, self.templeate_name, {
-                    'usernew' : ' ✔️ Usuario creado con exito'})
-                except:
-                    return render(request, self.templeate_name, {
-                    'error' : ' ✖️ Fallo al crear usuario'})
-
+   
 class singout(View):
     def get(self, request):
         logout(request)
@@ -103,7 +74,8 @@ class create_user_mant(LoginRequiredMixin, View):
                         area_worker = area,
                         carge = carge,
                         activo_worker = None,
-                        #stade = True
+                        password = password1,
+                        stade = 'Activo'
                         )
                     employed.save()
                     return render(request, self.templeate_name, {   
@@ -112,7 +84,8 @@ class create_user_mant(LoginRequiredMixin, View):
                     print(e)    
                     return render(request, self.templeate_name, {
                     'error' : ' ✖️ Fallo'})
-                
+        else:
+            print(formsemployed.errors)
         return render(request, self.templeate_name,{'error' : ' ✖️ Fallo al crear usuario'})
                 
 class editEmployed(View):
@@ -123,16 +96,50 @@ class editEmployed(View):
             'categorias' : worker_plant.objects.all()
         })
     
-class editEmployed2(View):
-    templete_name = 'empleados/edit_employed2.html'
+class change_status(View):
+    
+    def get(self, request, pk):
+        empleado = get_object_or_404(worker_plant, pk = pk)
+        print(pk)
+        empleado.stade = 'Inactivo'
+        empleado.save()
+        return redirect('usuarios:employed')
+    
+class edit_employed(View):
+    templete_name = 'empleados/edit_employed2.html' 
 
-    def get(self, request):
+    def get(self, request, pk):
+        print(pk)
         return render(request, self.templete_name, {
-            'code' : 'code'
-        } )
-
-def change_status(request, pk):
-    empleado = get_object_or_404(worker_plant, pk=pk)
-    empleado.stade = False 
-    empleado.save()
-    return redirect('usuarios:employed')
+           'empleado' : worker_plant.objects.filter(pk = pk)
+        })
+    
+    def post(self, request, pk, *args, **kwargs):
+        employedsave = get_object_or_404(worker_plant, pk=pk)
+        formemployedsave =  employed_mant(request.POST)
+        
+        print("hello")
+        print(formemployedsave.is_valid())
+        if formemployedsave.is_valid():
+            password1 = formemployedsave.cleaned_data['password1']
+            password2 = formemployedsave.cleaned_data['password2']
+            print("hola")
+            if password1 != password2:
+                return render(request, self.templete_name, {
+                'error' : ' ✖️ Contraseñas no coinciden'})
+            else:
+                try:
+                    print("hola")
+                    employedsave.name = formemployedsave.cleaned_data['username']
+                    employedsave.last_name = formemployedsave.cleaned_data['last_name']
+                    employedsave.password = make_password(formemployedsave.cleaned_data['password1'])
+                    employedsave.stade = formemployedsave.cleaned_data['stade']
+                    employedsave.carge = formemployedsave.cleaned_data['carge']
+                    employedsave.area_worker = formemployedsave.cleaned_data['area']
+                    employedsave.save()
+                    return redirect('usuarios:employed')
+                except Exception as e:
+                    print(e)
+                    return render(request, self.templete_name, {
+                    'error' : ' ✖️ Fallo'})    
+        return render(request, self.templete_name,{'error' : ' ✖️ Fallo al guardar el usuario'})

@@ -2,35 +2,62 @@
 
 {% block content %}
 
-<div class="card">
-    <div class="card-body">
-        <nav class="navbar ">
-            <span class="navbar-brand mb-0 h1 position-absolute  start-50">Activos</span>
-        </nav>
-    </div>
-    
-    <div class="container mt-1">
-        <table class="table table-borderless table-hover table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Id Activo</th>
-                <th scope="col">Area</th>
-                <th scope="col">Tipo</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Detalles</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td scope="row">4</td>
-                <td>CentroD</td>
-                <td>CentroD</td>
-                <td>CentroD</td>
-                <td><button type="button" class="btn btn-primary position-relativ" >Detalles</button></td>
-              </tr>
-            </tbody>
-          </table>
-    </div> 
+<div class="container" style="padding: 20px;">
+  <div class="card">
+      <div class="card-header">
+          <h5 class="card-title">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          Activos
+          </h5>
+      </div>
+      <div class="card-body">
+          <table class="table" id="table_employed">
+              <thead>
+                <tr>
+                  <th scope="col">Codigo</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Area</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for a in activos %}
+                  <tr>
+                      <td>{{a.code_activo}}</td>
+                      <td>{{a.name_activo}}</td>
+                      <td>{{a.area_activo}}</td>
+                      <td>{{a.category}}</td>
+                      <td>{{a.stade_activo}}</td>
+                      <td>
+                          <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                              <div style="padding-right: 10px;">
+                                   <a href="" style="border: 2px;" class="text-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                              </div>
+                                 
+                              <div>
+                                  <a href="" class="text-danger"><i class="fa-solid fa-trash-can"></i></a>
+                              </div>
+                                  
+                          
+                          </div>
+                      </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+            </table>        
+      </div>
+      <form action="{% url 'activos:crearActivo' %}">
+          <div class="card-footer">
+              <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Registrar Activo</button>
+          </div>
+      </form>
+      
+
+  </div>
 </div>
+
+
 
 {% endblock %}

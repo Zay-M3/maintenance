@@ -19,7 +19,9 @@
                             <label for="" style="padding: 10px;">Solicitante</label>
                             <select class="form-select" aria-label="default select text" style="width:350px;">
                                 <option selected>Nombre del trabajador</option>
-                                
+                                {% for emp in empleado %}
+                                <option value="emp">{{emp.name}}</option>
+                                {% endfor %}
                             </select>
                             <label for="" style="padding: 10px;">Fecha</label>
                             <label id="currentDate" style="padding: 10px;"></label>
@@ -27,11 +29,23 @@
                         </div>
                         <div style="display: flex;">
                             <label for="" style="padding: 10px;">Maquina / Equipo</label>
-                            <select class="form-select" aria-label="default select text" style="width:350px;"></select>
+                            <select class="form-select" aria-label="default select text" style="width:350px;">
+                                <option selected>Equipo/Activo</option>
+                                {% for a in activos %}
+                                <option value="ac">{{a.name_activo}}</option>
+                                {% endfor %}
+                            </select>
                             <label for="" style="padding: 10px;">Codigo</label>
-                            <select class="form-select" aria-label="default select text" disabled style="width: 100px;"></select>
+                            <select class="form-select" aria-label="default select text" disabled style="width: 100px;">
+
+                            </select>
                             <label for="" style="padding: 10px;">Prioridad</label>
-                            <select class="form-select" aria-label="default select text" style="width: 100px;"></select>
+                            <select class="form-select" aria-label="default select text" style="width: 150px;">
+                                <option selected>Prioridad</option>
+                                <option value="opc_report_alta">Alta</option>
+                                <option value="opc_report_media">Media</option>
+                                <option value="opc_report_baja">Baja</option>
+                            </select>
                         </div>
                         
                     </div>
@@ -67,12 +81,7 @@
                     <div style="display: flex; gap: 100px;">
                         <div>
                             <label style="color: gray; padding: 5px;">Tipo de Mantenimiento</label>
-                            <!-- #region <div>
-                                <input class="form-check-input" type="checkbox" value="" id="mant_equipo">
-                                <label class="form-check-label" for="flexCheckDefault">Mantenimiento de Equipo/Maquina</label>
-                                <input class="form-check-input" type="checkbox" value="" id="man_infracestuctura">
-                                <label class="form-check-label" for="flexCheckDefault">Mantenimiento de infracestuctura</label>
-                            </div>-->
+                            
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="man_equip_mant" id="rad1">
                                 <label class="form-check-label" for="rad1">
@@ -88,12 +97,7 @@
                         </div>
                         <div>
                             <label style="color: gray; padding: 5px">Tipo de Solicitud</label>
-                            <!-- #region <div>
-                                <input class="form-check-input" type="checkbox" value="" id="mant_correctivo">
-                                <label class="form-check-label" for="flexCheckDefault">Mantenimiento Correctivo</label>
-                                <input class="form-check-input" type="checkbox" value="" id="mant_mejora">
-                                <label class="form-check-label" for="flexCheckDefault">Mantenimiento de Mejora</label>
-                            </div>-->
+                            
 
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="man_corect_upgrade" id="rad1">
