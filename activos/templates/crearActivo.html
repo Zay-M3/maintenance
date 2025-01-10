@@ -8,43 +8,46 @@
                 <h2 class="text-center mb-4">Registrar Activo</h2>
             </div>
             <div class="card-body">
-                <form method="POST" action="{% url 'usuarios:createemployed' %}">
+                <form method="POST" action="{% url 'activos:crearActivo' %}">
                     {% csrf_token %} 
                     <div class="error"><label>{{usernew}}</label></div>
                     <div class="error"><label>{{error}}</label></div>
                     <div class="form-group" style="display: flex; gap: 10px;padding: 15px;">
-                        <label for="username">Codigo</label>
-                        <input type="text" class="form-control" style="width: 250px;" id="code" name="code" placeholder="Codigo" required>
+                        <label for="code_activo">Codigo</label>
+                        <input type="text" class="form-control" style="width: 250px;" id="code_activo" name="code_activo" placeholder="Codigo" required>
                     </div>   
                     <div class="form-group" style="display: flex; gap: 10px;padding: 15px;">
-                        <label for="username">Nombre</label>
-                        <input type="text" class="form-control" style="width: 250px;" id="username" name="username" placeholder="Nombre" required>
-                        <label for="last_name">Apellido</label>
-                        <input type="text" class="form-control" style="width: 250px;" id="last_name" name="last_name" placeholder="Apellido">
+                        <label for="name_activo">Nombre</label>
+                        <input type="text" class="form-control" style="width: 250px;" id="name_activo" name="name_activo" placeholder="Nombre" required>
+                        <label for="num_serie">Numero de Serie</label>
+                        <input type="text" class="form-control" style="width: 250px;" id="num_serie" name="num_serie" placeholder="Numero de Serie">
                     </div>
-                    <div class="form-group" style="padding: 15px;">
-                        <label for="password">Contraseña</label>
-                        <input type="password" class="form-control" style="width: 250px;" id="password1" name="password1" placeholder="Contraseña" required>
+                    <div class="form-group" style="display: flex; gap: 10px;padding: 15px;">
+                        <label for="marc_activo">Marca</label>
+                        <input type="text" class="form-control" style="width: 250px;" id="marc_activo" name="marc_activo" placeholder="Marca" required>
+                        <label for="value_activo">Valor</label>
+                        <input type="text" class="form-control" style="width: 250px;" id="value_activo" name="value_activo" placeholder="$">
                     </div>
-                    <div class="form-group" style="padding: 15px;">
-                        <label for="password2">Confirmar Contraseña</label>
-                        <input type="password" class="form-control" style="width: 250px;" id="password2" name="password2" placeholder="Confirmar Contraseña" required>
+                    <div class="form-group" style="display: flex; gap: 10px;padding: 15px;">
+                        <label for="guarantee_activo_time">Garantia Tiempo</label>
+                        <input type="text" class="form-control" style="width: 250px;" id="guarantee_activo_time" name="guarantee_activo_time" placeholder="Garantia Tiempo" required>
                     </div>
                     <div class="form-group" style="display: flex; gap: 10px; padding: 15px;">
-                        <label for="" style="padding: 10px;">Area</label>
-                        <select class="form-select" aria-label="default select text" type="text" id="area" name="area" style="width: 250px;">
+                        <label for="area_activo" style="padding: 10px;">Area</label>
+                        <select class="form-select" aria-label="default select text" type="text" id="area_activo" name="area_activo" style="width: 250px;">
                             <option selected>Planta</option>
                                 <option value="Planta">Planta</option>
                                 <option value="Oficina">Oficina</option>
-                                <option value="Mantenimiento">Area Mantenimiento</option>
+                                <option value="Area_Mantenimiento">Area Mantenimiento</option>
                         </select>
                     </div>
                     <div class="form-group" style="display: flex; gap: 10px; padding: 15px;">
-                        <label for="" style="padding: 10px;">Cargo</label>
-                        <select class="form-select" aria-label="default select text" type="text" id="carge" name="carge" style="width: 250px;">
-                            <option selected>Empleado</option>
-                            <option value="Planta">Empleado Planta</option>
-                            <option value="Mantenimiento">Empleado Mantenimiento</option>
+                        <label for="stade_activo" style="padding: 10px;">Estado</label>
+                        <select class="form-select" aria-label="default select text" type="text" id="stade_activo" name="stade_activo" style="width: 250px;">
+                            
+                            <option value="Bueno">Bueno</option>
+                            <option value="Malo">Malo</option>
+                            <option value="Mantenimiento">Mantenimiento</option>
                         </select>
                     </div>
                     <div class="d-flex justify-content-center" >
